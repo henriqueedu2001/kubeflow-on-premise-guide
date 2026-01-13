@@ -1,5 +1,35 @@
-# kubeflow-on-premise-guide
-Guia de uso do Kubeflow em ambiente on-premise de alto desempenho
+# Guia de uso do Kubeflow em ambiente on-premise
+Este guia elucida a instalação e o uso do Kubeflow em ambiente computacional de alto desempenho on-premise. Isto é, instalar o Kubeflow em uma máquina local, não em uma máquina de um provedor de nuvem, e utilizá-lo aproveitando toda potência do hardware disponível e as vantagens do ambiente local.
+
+O Guia está separado em tutoriais diversos, que cobrem detalhadamente desde a instalação do Kubeflow na máquina do zero, partindo-se da instalação das dependências, até a criação e execução de pipelines sofisticados, com GPUs.
+
+# Autoria
+Este guia foi produzido por estagiários, alunos de iniciação científica, mestrandos e doutorandos do Centro Interdisciplinar de Tecnologias Interativas da Universidade de São Paulo (CITI-USP), como resultado de uma série de investigações no uso do Kubeflow para treinamento de modelos de visão computacional no cluster ASIMOV, equipado com um hardware potente.
+
+- **Henrique S. Souza** (`@henriqueedu2001`): aluno de iniciação científica, estudante de engenharia de computação na USP.
+- **Vicente Pascoal** (`@Vicente-VP`): estagiário, estudante de análise e desenvolvimento de sistemas na FATEC.
+
+# Premissas
+Assume-se que você tenha uma máquina ou um cluster de máquinas com alto poder computacional, equipado com GPUs da NVIDIA, em que deseja instalar o Kubeflow, para praticar ML Ops. A máquina pode tanto ser acessível diretamente, isto é, você mesmo tem acesso físico a ela e pode abrir um terminal nela, ou acessível indiretamente, via conexões SSH.
+
+# Estrutura do Guia
+O guia estrutura-se em (a) tutoriais de instalação e uso do Kubeflow e (b) resolução de problemas comuns. Conforme a árvore abaixo, ambos são apresentados dentro do diretório `/docs`, nas pastas `/tutorials` e `/troubleshooting`. Dentro de cada uma delas, há uma série de arquivos de extensão `.md` que explicam o assunto.
+
+```text
+.
+├── docs/
+│    └─── tutorials
+│          └─── common_server_operations.md
+│          └─── ssh_remote_access.md
+|          ...
+│    └─── troubleshooting
+│          └─── ssh_errors.md
+│          └─── kubeflow_dependencies.md
+│          ...
+├── src/
+├── LICENSE
+└── README.md
+```
 
 Este repositório documenta como é feita a instalação do Kubeflow completo e como criar seu primeiro pipeline. Executando-se o script main.py, gera-se uma especificação de pipeline pipeline.yaml, que pode ser enviada para um backend de Kubeflow e executada nele em uma run.
 
