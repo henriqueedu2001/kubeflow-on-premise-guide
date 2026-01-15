@@ -21,4 +21,4 @@ verificar instalação
 kustomize version
 ```
 
-[Video tutorial instalação Kustomize](https://chatgpt.com/share/69416398-3044-8005-aa8b-24d26c3357a4)
+[Chat tutorial instalação Kustomize](https://chatgpt.com/share/69416398-3044-8005-aa8b-24d26c3357a4)
