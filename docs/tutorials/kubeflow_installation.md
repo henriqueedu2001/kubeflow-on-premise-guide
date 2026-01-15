@@ -7,11 +7,12 @@ Antes de começarmos a instalação do `kubeflow` é necessário realizar a segu
 Para a instalação e configuração do `kubeflow` nós temos algum pré-requisitos, sendo eles:
 
 | Pré-requisitos | Link | 
-| -------- | ----- | 
-| nvkind   | [instalação do nvkind](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/nvkind_installation.md) | 
-| docker   |  | 
-| kind     |  | 
-| kubectl  |  | 
+| --------- | ----- | 
+| nvkind    | [instalação do nvkind](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/nvkind_installation.md) | 
+| docker    | [instalação do docker](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/docker_installation.md) | 
+| kind      | [instalação do kind](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kind_installation.md) | 
+| kubectl   | [instalação do kubectl](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kubectl_installation.md) | 
+| kustomize | [instalação do kustomize](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kustomize_installation.md) | 
 
 ## Instalação 
 
