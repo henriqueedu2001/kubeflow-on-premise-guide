@@ -9,7 +9,7 @@ ser isolados em diferentes nós de trabalho.
 O `nvkind` junto o conjunto de etapas que são precisas para fazer a criação de um nó com GPU. 
 
 ## Requisitos para instalação
-Para a instalação e cinfiguração do `nvkind` nós temos algum pré-requisitos, sendo eles: 
+Para a instalação e configuração do `nvkind` nós temos algum pré-requisitos, sendo eles: 
 
 | Pré-requisitos | Link | 
 | -------- | ----- | 
