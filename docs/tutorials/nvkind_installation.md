@@ -12,12 +12,13 @@ O `nvkind` junto o conjunto de etapas que são precisas para fazer a criação d
 Para a instalação e configuração do `nvkind` nós temos algum pré-requisitos, sendo eles: 
 
 | Pré-requisitos | Link | 
-| -------- | ----- | 
-| Go       |  | 
-| docker   |  | 
-| kind     |  | 
-| kubectl  |  | 
-| heml     |  | 
+| --------- | ----- | 
+| Go        | [instalação go](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/go_installation.md) | 
+| docker    | [instalação docker](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/docker_installation.md) | 
+| kind      | [instalação kind](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kind_installation.md) | 
+| kubectl   | [instalação kubectl](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kubectl_installation.md) | 
+| heml      | [instalação helm](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/helm_installation.md) |
+| kustomize | [instalação kustomize](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kustomize_installation.md) |
 
 ## Instalação 
 
@@ -51,7 +52,7 @@ sudo systemctl restart docker
 
 ### Instalação ferramentas de orquestração
 
-Para o `kind` utilize o (tutorial kind)[], `helm` o (tutorial helm)[] e `kustomize` o (tutorial kustomize)[]
+Para o `kind` utilize o [tutorial kind](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kind_installation.md), `helm` o [tutorial helm](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/helm_installation.md) e `kustomize` o [tutorial kustomize](https://github.com/henriqueedu2001/kubeflow-on-premise-guide/blob/main/docs/tutorials/kustomize_installation.md)
 
 `Nvkind`
 ```
