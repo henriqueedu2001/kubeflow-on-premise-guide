@@ -1,0 +1,99 @@
+# PIPELINE DEFINITION
+# Name: gpu-check-pipeline
+# Description: Pipeline KFP v2 para verificação de visibilidade das GPUs
+# Outputs:
+#    Output: str
+components:
+  comp-benchmark:
+    executorLabel: exec-benchmark
+    inputDefinitions:
+      parameters:
+        n:
+          defaultValue: 4096.0
+          isOptional: true
+          parameterType: NUMBER_INTEGER
+    outputDefinitions:
+      parameters:
+        Output:
+          parameterType: STRING
+deploymentSpec:
+  executors:
+    exec-benchmark:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - benchmark
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.2'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef benchmark(n: int = 4096) -> str:\n    import torch\n    import\
+          \ numpy as np\n    import time\n    logs = ''\n\n    logs += f'torch version:\
+          \ {torch.__version__}\\n'\n    logs += f'cuda available: {torch.cuda.is_available()}\\\
+          n'\n\n    if torch.cuda.is_available():\n        logs += f'gpu count: {torch.cuda.device_count()}\\\
+          n'\n        logs += f'current device: {torch.cuda.current_device()}\\n'\n\
+          \        logs += f'device name: {torch.cuda.get_device_name(0)}\\n'\n  \
+          \  else:\n        logs += 'No GPU detected by PyTorch\\n\\n'\n\n    # benchmark\n\
+          \    logs += f'Benchmark de multiplica\xE7\xE3o de matrizes {n} x {n}\\\
+          n'\n    a_cpu = np.random.rand(n, n).astype(np.float32)\n    b_cpu = np.random.rand(n,\
+          \ n).astype(np.float32)\n\n    # medi\xE7\xE3o do tempo da CPU\n    start_cpu\
+          \ = time.perf_counter()\n    c_cpu = a_cpu @ b_cpu\n    end_cpu = time.perf_counter()\n\
+          \    cpu_time = end_cpu - start_cpu\n    logs += f'Tempo CPU (NumPy): {cpu_time:.4f}\
+          \ s\\n'\n\n    assert torch.cuda.is_available(), 'CUDA n\xE3o dispon\xED\
+          vel'\n    device = torch.device('cuda')\n    a_gpu = torch.randn(n, n, device=device)\n\
+          \    b_gpu = torch.randn(n, n, device=device)\n\n    # aquecimento\n   \
+          \ for _ in range(3):\n        _ = a_gpu @ b_gpu\n    torch.cuda.synchronize()\n\
+          \n    # medi\xE7\xE3o do tempo da GPU\n    start_gpu = time.perf_counter()\n\
+          \    c_gpu = a_gpu @ b_gpu\n    torch.cuda.synchronize()\n    end_gpu =\
+          \ time.perf_counter()\n    gpu_time = end_gpu - start_gpu\n    logs += f'Tempo\
+          \ GPU (CUDA): {gpu_time:.4f} s\\n'\n\n    logs += f'Speedup GPU vs CPU:\
+          \ {cpu_time / gpu_time:.2f}x\\n'\n\n    return logs\n\n"
+        image: nvcr.io/nvidia/pytorch:26.01-py3
+        resources:
+          accelerator:
+            count: '16'
+            resourceCount: '16'
+            resourceType: nvidia.com/gpu
+            type: nvidia.com/gpu
+pipelineInfo:
+  description: "Pipeline KFP v2 para verifica\xE7\xE3o de visibilidade das GPUs"
+  name: gpu-check-pipeline
+root:
+  dag:
+    outputs:
+      parameters:
+        Output:
+          valueFromParameter:
+            outputParameterKey: Output
+            producerSubtask: benchmark
+    tasks:
+      benchmark:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-benchmark
+        taskInfo:
+          name: benchmark
+  outputDefinitions:
+    parameters:
+      Output:
+        parameterType: STRING
+schemaVersion: 2.1.0
+sdkVersion: kfp-2.15.2
