@@ -3,11 +3,12 @@ Kustomize é uma ferramenta nativa do Kubernetes para personalizar arquivos de c
 
 ## Instalação 
 
-baixar arquivo 
-```
-curl -LO https://github.com/kubernetes-sigs/kustomize/releases/latest/download/kustomize_linux_amd64.tar.gz
-tar -xvf kustomize_linux_amd64.tar.gz
-chmod +x kustomize
+baixar arquivo
+
+```bash
+curl -s https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash
+sudo mv kustomize /usr/local/bin/
+kustomize version
 ```
 
 mover para um local Global

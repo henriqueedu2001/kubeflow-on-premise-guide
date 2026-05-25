@@ -41,7 +41,7 @@ teste de funcionamento
 ```
 docker run hello-world
 ```
-O retorno será um Hello World e a criação de um conteiner.
+O retorno será um Hello World e a criação de um container.
 
 (Caso tenha algum erro na hora de tentar rodar o teste utilize o comando sudo ou volte para o Passo anterior ao Teste)
 [Video Tutorial Docker](https://www.youtube.com/watch?v=lRnCN475cto)
